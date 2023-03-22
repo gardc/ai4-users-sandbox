@@ -17,7 +17,7 @@ def readAndProcessData():
     cd = os.getcwd()
 
 #Using Pandas to get data from excel file
-    dataframe = pd.ExcelFile(cd + "\\data\\sickleaveData.xlsx")
+    dataframe = pd.ExcelFile(cd + "..\\sickleaveData.xlsx")
 
 #Reading each sheet
     df1 = pd.read_excel(dataframe, 'Fylke')[24:] #Omitting unwanted rows
@@ -142,7 +142,7 @@ def trainModel(training_X, training_Y, test_X, test_Y, model):
        # print(f"result: {predicted[i]}:{test_Y[i]}")
     print(f"Accuracy: ", correct/len(predicted))
     print(f"f1-score: ", f1_score(test_Y, predicted, average=None))
-    pickle.dump(trainedModel, open("test.sav", 'wb'))
+    pickle.dump(trainedModel, open("../data/trained_data.sav", 'wb'))
     return trainedModel
 
 
@@ -167,7 +167,13 @@ def getResult(input):
         result[index] = value
 
 #Predicting sick leave in weeks
-    trainedModel = pickle.load(open("test.sav", 'rb'))
+    data_dir = os.path.join(os.path.dirname(__file__), '..', 'data')
+    file_path = os.path.join(data_dir, 'trained_data.sav')
+
+    trainedModel = None
+    with open(file_path, 'rb') as f:
+        trainedModel = pickle.load(f)
+
     prediction = trainedModel.predict([result])
 
 #Returning predicted sick-leave

@@ -1,4 +1,4 @@
-from api import ai_model
+from . import ai_model
 
 #Resurs til å konvertere kategoriske features fra string til int.
 #https://www.projectpro.io/recipes/convert-string-categorical-variables-into-numerical-variables-using-label-encoder
