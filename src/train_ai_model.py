@@ -5,7 +5,7 @@ from ai_model import readAndProcessData, trainModel, getResult
 #https://www.projectpro.io/recipes/convert-string-categorical-variables-into-numerical-variables-using-label-encoder
 
 training_X, training_Y, test_X, test_Y = readAndProcessData()
-model = MLPClassifier(activation="relu", solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 3), random_state=1) # https://scikit-learn.org/stable/modules/neural_networks_supervised.html
+model = MLPClassifier(activation="relu", solver='lbfgs', alpha=1e-6, hidden_layer_sizes=(32, 16, 3), random_state=1) # https://scikit-learn.org/stable/modules/neural_networks_supervised.html
 #model = GaussianNB()
 #model = Perceptron(tol=1e-5, random_state=0)
 
