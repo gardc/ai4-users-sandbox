@@ -1,13 +1,14 @@
 
-
 #from sklearn.naive_bayes import GaussianNB
 #from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import f1_score
 #from sklearn.linear_model import Perceptron
 import numpy as np
 import pandas as pd
 import os
+import pickle
 
 
 
@@ -107,18 +108,24 @@ def readAndProcessData():
 #Converting features from string to numbers.
     tempDf = pd.DataFrame(temporaryData, columns=['Fylke', 'Alder', 'Diagnose', 'Sex', 'labels'])
     tempDf = pd.get_dummies(tempDf, columns=['Fylke', 'Alder' , 'Diagnose', 'Sex'])
-  #  print(tempDf[:10])
-   # for col in tempDf.columns:
-    #    print("Kolonne: ", col)
+    tempDf.loc[tempDf["labels"] == 9, "labels"] = 8
+    tempDf.loc[tempDf["labels"] == 2, "labels"] = 3
+   # df_filtered = tempDf[tempDf['labels'] >= 3]
+   # df_filteredd = df_filtered[df_filtered['labels'] <= 8]
+
 #Splitting into training and test-data. (80/20)   
     trainDf, testDf = train_test_split(tempDf, test_size=0.2, random_state=42)
 
-#Converting from DataFrame to array, and seperating label and features. X contains features, and Y contains corresponding labels.
+#Converting from DataFrame to-array-to-list, and seperating label and features. X contains features, and Y contains corresponding labels.
     training_X = trainDf.to_numpy().tolist()
     training_Y = [elem.pop(0) for elem in training_X]
 
     test_X = testDf.to_numpy().tolist()
     test_Y = [elem.pop(0) for elem in test_X]
+    
+    
+    print("NR1: ", np.unique(training_Y, return_counts=True))
+    print("NR2: ", np.unique(test_Y, return_counts=True))
 
 
 #Returning generated datasets. 
@@ -134,6 +141,8 @@ def trainModel(training_X, training_Y, test_X, test_Y, model):
             correct += 1
        # print(f"result: {predicted[i]}:{test_Y[i]}")
     print(f"Accuracy: ", correct/len(predicted))
+    print(f"f1-score: ", f1_score(test_Y, predicted, average=None))
+    pickle.dump(trainedModel, open("test.sav", 'wb'))
     return trainedModel
 
 
@@ -145,7 +154,7 @@ def getResult(input):
                 '16-19': [0, 11], '20-24': [0, 12], '25-29': [0, 13], '30-34': [0, 14], '35-39': [0, 15], '40-44': [0, 16],
                 '45-49': [0, 17], '50-54': [0, 18], '55-59': [0, 19], '60-64': [0, 20], '65-69': [0, 21], 'cardiovascular diseases': [0, 22],
                 'muscle/skeleton disorders': [0, 23], 'mental disorders': [0, 24], 'pregnancy disorders': [0, 25], 'disease in the digestive organs': [0, 26],
-                'diseases in the respiratory tract': [0, 27], 'diseases in the nervous system': [0, 28], 'man': [0, 29], 'woman': [0, 30]}
+                'diseases in the respiratory tract': [0, 27], 'diseases in the nervous system': [0, 28], 'male': [0, 29], 'female': [0, 30]}
 
     for elem in input:
     #Changing feature-values for keys in dictionary that match with input.
@@ -158,6 +167,7 @@ def getResult(input):
         result[index] = value
 
 #Predicting sick leave in weeks
+    trainedModel = pickle.load(open("test.sav", 'rb'))
     prediction = trainedModel.predict([result])
 
 #Returning predicted sick-leave
@@ -169,12 +179,12 @@ def getResult(input):
 #https://www.projectpro.io/recipes/convert-string-categorical-variables-into-numerical-variables-using-label-encoder
 
 training_X, training_Y, test_X, test_Y = readAndProcessData()
-model = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 3), random_state=1) # https://scikit-learn.org/stable/modules/neural_networks_supervised.html
+model = MLPClassifier(activation="relu", solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 3), random_state=1) # https://scikit-learn.org/stable/modules/neural_networks_supervised.html
 #model = GaussianNB()
 #model = Perceptron(tol=1e-5, random_state=0)
 
 trainedModel = trainModel(training_X, training_Y, test_X, test_Y, model)
-result = getResult(['Agder', '16-19', 'pregnancy disorders', 'woman'])
-#print(result)
+result = getResult(['Agder', '65-69', 'pregnancy disorders', 'female'])
+print(result)
 
 
