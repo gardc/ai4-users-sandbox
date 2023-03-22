@@ -3,9 +3,4 @@ services:
   app:
     build: .
     ports:
-      - "5000:5000"
-    environment:
-      FLASK_ENV: production
-      FLASK_APP: src/index.py
-    volumes:
-      - .:/code
+      - "80:5000"
