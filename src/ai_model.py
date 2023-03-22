@@ -17,7 +17,7 @@ def readAndProcessData():
     cd = os.getcwd()
 
 #Using Pandas to get data from excel file
-    dataframe = pd.ExcelFile(cd + "..\\sickleaveData.xlsx")
+    dataframe = pd.ExcelFile(cd + "\\sickleaveData.xlsx")
 
 #Reading each sheet
     df1 = pd.read_excel(dataframe, 'Fylke')[24:] #Omitting unwanted rows
@@ -142,15 +142,16 @@ def trainModel(training_X, training_Y, test_X, test_Y, model):
        # print(f"result: {predicted[i]}:{test_Y[i]}")
     print(f"Accuracy: ", correct/len(predicted))
     print(f"f1-score: ", f1_score(test_Y, predicted, average=None))
-    pickle.dump(trainedModel, open("../data/trained_data.sav", 'wb'))
-    return trainedModel
+    cd = os.getcwd()
+    pickle.dump(trainedModel, open(cd + "\\data\\trained_data.sav", 'wb'))
+
 
 
 def getResult(input):
 #Converting input from string to int
     result = np.zeros((1, 31), dtype=int).tolist()[0]
-    features = {'Agder': [0, 0], 'Innlandet': [0, 1], 'Møre og Romsdal': [0, 2], 'Nordland': [0, 3], 'Oslo': [0, 4], 'Rogaland': [0, 5],
-                'Troms og Finnmark': [0, 6], 'Trøndelag': [0, 7], 'Vestfold og Telemark': [0, 8], 'Vestland': [0, 9], 'Viken': [0, 10],
+    features = {'agder': [0, 0], 'innlandet': [0, 1], 'møre og romsdal': [0, 2], 'nordland': [0, 3], 'oslo': [0, 4], 'rogaland': [0, 5],
+                'troms og finnmark': [0, 6], 'trøndelag': [0, 7], 'vestfold og telemark': [0, 8], 'vestland': [0, 9], 'viken': [0, 10],
                 '16-19': [0, 11], '20-24': [0, 12], '25-29': [0, 13], '30-34': [0, 14], '35-39': [0, 15], '40-44': [0, 16],
                 '45-49': [0, 17], '50-54': [0, 18], '55-59': [0, 19], '60-64': [0, 20], '65-69': [0, 21], 'cardiovascular diseases': [0, 22],
                 'muscle/skeleton disorders': [0, 23], 'mental disorders': [0, 24], 'pregnancy disorders': [0, 25], 'disease in the digestive organs': [0, 26],
@@ -158,7 +159,7 @@ def getResult(input):
 
     for elem in input:
     #Changing feature-values for keys in dictionary that match with input.
-        features[elem][0] = 1
+        features[elem.lower()][0] = 1
 
     for key in features.keys():
     #Getting relevant feature and its value
