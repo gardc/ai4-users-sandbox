@@ -154,7 +154,7 @@ def getResult(input):
                 'troms og finnmark': [0, 6], 'trøndelag': [0, 7], 'vestfold og telemark': [0, 8], 'vestland': [0, 9], 'viken': [0, 10],
                 '16-19': [0, 11], '20-24': [0, 12], '25-29': [0, 13], '30-34': [0, 14], '35-39': [0, 15], '40-44': [0, 16],
                 '45-49': [0, 17], '50-54': [0, 18], '55-59': [0, 19], '60-64': [0, 20], '65-69': [0, 21], 'cardiovascular diseases': [0, 22],
-                'muscle/skeleton disorders': [0, 23], 'mental disorders': [0, 24], 'pregnancy disorders': [0, 25], 'disease in the digestive organs': [0, 26],
+                'muscle/skeleton disorders': [0, 23], 'mental disorders': [0, 24], 'pregnancy disorders': [0, 25], 'diseases in the digestive organs': [0, 26],
                 'diseases in the respiratory tract': [0, 27], 'diseases in the nervous system': [0, 28], 'male': [0, 29], 'female': [0, 30]}
 
     for elem in input:
