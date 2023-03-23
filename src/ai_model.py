@@ -15,9 +15,10 @@ import pickle
 def readAndProcessData():
 #Fetching current working directory
     cd = os.getcwd()
-
+    print(cd)
 #Using Pandas to get data from excel file
     dataframe = pd.ExcelFile(cd + "\\sickleaveData.xlsx")
+
 
 #Reading each sheet
     df1 = pd.read_excel(dataframe, 'Fylke')[24:] #Omitting unwanted rows

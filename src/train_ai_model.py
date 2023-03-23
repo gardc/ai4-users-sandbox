@@ -10,5 +10,5 @@ model = MLPClassifier(activation="relu", solver='lbfgs', alpha=1e-6, hidden_laye
 #model = Perceptron(tol=1e-5, random_state=0)
 
 trainedModel = trainModel(training_X, training_Y, test_X, test_Y, model)
-result = getResult(['Agder', '16-19', 'pregnancy disorders', 'FEMALE'])
+result = getResult(['troms og finnmark', '16-19', 'Diseases in the digestive organs', 'femaLE'])
 print("!!!!", result)
