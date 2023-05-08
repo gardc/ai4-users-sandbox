@@ -1,7 +1,5 @@
 import json
-
 from flask import Flask
-
 from src.routes import configure_routes
 
 # test_index is used by pytest (see readme for instructions)

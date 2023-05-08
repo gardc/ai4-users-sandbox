@@ -1,5 +1,4 @@
-from flask import Flask, request, jsonify
-from ai_model import predict
+from flask import Flask
 from routes import configure_routes
 
 # Create Flask instance

@@ -168,14 +168,12 @@ def findAverage():
     return results
 
 
-
 """
 Function:
         normalizes lists found in findAverage(), this way they will sum to 1 and can be used as percentages. 
 Args: 
         values (list): tuples for each feature value in age, 
                         and a list containing its corresponding shapley value and the average shapley values.  
-
 Returns: 
         None. (Prints to console) 
 """
@@ -198,14 +196,20 @@ def normalize(values):
    
 
 def run():
-    print("")
+    """
+    Sequential order of function-calls to calculate sets of shapley values.
+    """
     #getAndSaveAllPredictions()
     #calculateShapleyvalues()
-    #interpretShapleyValues()
     #results = findAverage()
     #normalize(results)
 
+    """
+    Prints out pair of feature values and their shapley values, only for sanity check.
+    """
+    #interpretShapleyValues()
 
 
-run()
+if __name__ == "__main__":
+    run()
 
