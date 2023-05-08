@@ -18,12 +18,15 @@ By looking at src/index.py, we can see the POST request to `/process_data` handl
 }
 ```
 
-## Running
-The server has been containerized via the use of Docker and Docker compose. In order to run the server, simply run:
+## Running the server
+The server has been containerized via the use of Docker and Docker compose for both ease of use and reliability. In order to run the server, simply run:
 ```sh
 docker-compose up
 ```
 This will build and start the dockerized Python Flask server, and it should then be ready to accept HTTP POST requests on `/process_data`. If you wish to start the docker instance in the background, you can add the `-d` tag (detached) to docker-compose so that it becomes: `docker-compose up -d`.
+
+### Stopping the server
+Stopping the server is done via the `docker-compose down` command.
 
 ## Testing
 cd to `src/tests/` and run `pytest` to perform tests.
