@@ -1,7 +1,6 @@
 
 
 from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import f1_score
 import numpy as np
 import pandas as pd
@@ -26,7 +25,7 @@ def readAndProcessData():
     cd = os.getcwd()
  
     #Using Pandas to get data from excel file
-    dataframe = pd.ExcelFile(cd + "\\sickleaveData.xlsx")
+    dataframe = pd.ExcelFile(cd + "\\data\\sickleaveData.xlsx")
 
 
     #Reading each sheet
@@ -85,7 +84,7 @@ def readAndProcessData():
             elem[col] = elem[col]/4
  
 
-    #Combining data into single user datas, and setting mean-value of attribute-values as labels
+    #Combining data to generate personas, and setting mean-value of attribute-values as labels
     women = allDataframes[:3]
     men = allDataframes[3:]
     temporaryData = {'Fylke':[], 'Alder':[], 'Diagnose':[], 'Sex':[], 'labels':[]}

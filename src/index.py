@@ -4,14 +4,6 @@ from ai_model import predict
 app = Flask(__name__)
 
 
-@app.route('/')
-def home():
-    return "hello 🤨"
-
-@app.route('/about')
-def about():
-    return 'About'
-
 @app.route('/process_data', methods=['POST'])
 def process_data():
     # Get the JSON data from the request
