@@ -13,7 +13,6 @@ Function:
         Reads in and preprocesses data
 Args: 
         None
-
 Returns: 
         training_X (list): List of features used to train model
         training_Y (list): List of labels used to train model
