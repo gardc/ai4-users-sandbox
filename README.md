@@ -4,7 +4,7 @@ This is the repo for the AI4Users Sandbox. It's written in Python 3 with Flask f
 ## System architecture and dataflow
 This diagram shows the dataflow of the three main functionalities in this system. 
 For further inspection, documentation is provided in their respective files.
-![alt text](https://github.com/[gardc]/[ai4-users-sandbox]/tree/[main]/img/system_architecture.png?raw=true)
+![alt text](https://github.com/[gardc]/[ai4-users-sandbox]/tree/[main]/img/system_architecture.png)
 
 ## Making sick leave estimate request
 By looking at src/index.py, we can see the POST request to `/process_data` handles sick leave requests. Example body:
