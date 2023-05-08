@@ -12,3 +12,6 @@ By looking at src/index.py, we can see the POST request to `/process_data` handl
 }
 ```
 
+
+## Testing
+cd to `src/tests/` and run `pytest` to perform tests.
