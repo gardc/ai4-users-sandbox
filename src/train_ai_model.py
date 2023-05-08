@@ -14,7 +14,7 @@ def main():
         Uncomment to fetch data, process data and train model.
         If no changes has been made, this only has to be executed once.
     """
-    training_X, training_Y, test_X, test_Y = readAndProcessData()
+    #training_X, training_Y, test_X, test_Y = readAndProcessData()
     #trainModel(training_X, training_Y, test_X, test_Y, model)
 
     
