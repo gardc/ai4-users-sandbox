@@ -1,7 +1,15 @@
 from flask import Flask, request, jsonify
 from src.ai_model import predict
 
+"""
+Function:
+        Configures routes on the provided Flask app.
+Args: 
+        App (Flask object): the Flask app to configure the routes on
 
+Returns: 
+        None (routes are being configured for the provided Flask app)
+"""
 def configure_routes(app):
     @app.route('/process_data', methods=['POST'])
     def process_data():

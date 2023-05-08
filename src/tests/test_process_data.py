@@ -4,10 +4,13 @@ from flask import Flask
 
 from src.routes import configure_routes
 
-
+# test_index is used by pytest (see readme for instructions)
 def test_index():
+    # Create a new Flask app object
     app = Flask(__name__)
+    # Configure the rotues for newly created Flask app
     configure_routes(app)
+    # Extract app's test client
     client = app.test_client()
 
     # Define the request data
